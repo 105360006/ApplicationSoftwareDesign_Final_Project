@@ -4,90 +4,220 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".play_activity">
+    tools:context=".play_activity"
+    tools:layout_editor_absoluteY="25dp">
 
     <ImageView
-        android:id="@+id/hit0"
-        android:layout_width="81dp"
-        android:layout_height="82dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:id="@+id/target42"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/hit1"
+        app:layout_constraintBottom_toTopOf="@+id/target32"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/target41"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dangon" />
+
+    <ImageView
+        android:id="@+id/target32"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/target22"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/target31"
+        app:layout_constraintTop_toBottomOf="@+id/target42"
+        app:srcCompat="@drawable/dangon" />
+
+    <ImageView
+        android:id="@+id/target11"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/target1"
+        app:layout_constraintEnd_toStartOf="@+id/target12"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/target10"
+        app:layout_constraintTop_toBottomOf="@+id/target21"
+        app:srcCompat="@drawable/dangon" />
+
+    <ImageView
+        android:id="@+id/target12"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/target2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/target11"
+        app:layout_constraintTop_toBottomOf="@+id/target22"
+        app:srcCompat="@drawable/dangon" />
+
+    <ImageView
+        android:id="@+id/target30"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/target20"
+        app:layout_constraintEnd_toStartOf="@+id/target31"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/target40"
+        app:srcCompat="@drawable/dangon" />
+
+    <ImageView
+        android:id="@+id/target31"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/target21"
+        app:layout_constraintEnd_toStartOf="@+id/target32"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/target30"
+        app:layout_constraintTop_toBottomOf="@+id/target41"
+        app:srcCompat="@drawable/dangon" />
+
+    <ImageView
+        android:id="@+id/target22"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/target12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/target21"
+        app:layout_constraintTop_toBottomOf="@+id/target32"
+        app:srcCompat="@drawable/dangon" />
+
+    <ImageView
+        android:id="@+id/target41"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/target31"
+        app:layout_constraintEnd_toStartOf="@+id/target42"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/target40"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dangon" />
+
+    <ImageView
+        android:id="@+id/target40"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/target30"
+        app:layout_constraintEnd_toStartOf="@+id/target41"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/dangon" />
 
     <ImageView
-        android:id="@+id/hit1"
-        android:layout_width="81dp"
-        android:layout_height="82dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:id="@+id/target20"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/hit2"
+        app:layout_constraintBottom_toTopOf="@+id/target10"
+        app:layout_constraintEnd_toStartOf="@+id/target21"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/hit0"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/target30"
         app:srcCompat="@drawable/dangon" />
 
     <ImageView
-        android:id="@+id/hit2"
-        android:layout_width="81dp"
-        android:layout_height="82dp"
-        android:layout_marginTop="8dp"
+        android:id="@+id/target10"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/target0"
+        app:layout_constraintEnd_toStartOf="@+id/target11"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/target20"
+        app:srcCompat="@drawable/dangon" />
+
+    <ImageView
+        android:id="@+id/target0"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/shot0"
+        app:layout_constraintEnd_toStartOf="@+id/target1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/target10"
+        app:srcCompat="@drawable/dangon" />
+
+    <ImageView
+        android:id="@+id/target21"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/target11"
+        app:layout_constraintEnd_toStartOf="@+id/target22"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/target20"
+        app:layout_constraintTop_toBottomOf="@+id/target31"
+        app:srcCompat="@drawable/dangon" />
+
+    <ImageView
+        android:id="@+id/target1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/shot1"
+        app:layout_constraintEnd_toStartOf="@+id/target2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/target0"
+        app:layout_constraintTop_toBottomOf="@+id/target11"
+        app:srcCompat="@drawable/dangon" />
+
+    <ImageView
+        android:id="@+id/target2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/shot2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/hit1"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/target1"
+        app:layout_constraintTop_toBottomOf="@+id/target12"
         app:srcCompat="@drawable/dangon" />
 
     <Button
         android:id="@+id/shot0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/shot1"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hit0" />
+        app:layout_constraintTop_toBottomOf="@+id/target0" />
 
     <Button
         android:id="@+id/shot1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_height="80dp"
         android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/shot2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/shot0"
-        app:layout_constraintTop_toBottomOf="@+id/hit1" />
+        app:layout_constraintTop_toBottomOf="@+id/target1" />
 
     <Button
         android:id="@+id/shot2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/shot1"
-        app:layout_constraintTop_toBottomOf="@+id/hit2" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="68dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shot0" />
+        app:layout_constraintTop_toBottomOf="@+id/target2" />
 
 </android.support.constraint.ConstraintLayout>
