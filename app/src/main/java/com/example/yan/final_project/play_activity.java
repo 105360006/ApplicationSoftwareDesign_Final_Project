@@ -1,12 +1,20 @@
 package com.example.yan.final_project;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Handler;
+import android.os.Trace;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class play_activity extends AppCompatActivity
     implements View.OnClickListener
@@ -34,9 +42,11 @@ public class play_activity extends AppCompatActivity
         shot1.setOnClickListener(this);
         shot2.setOnClickListener(this);
 
-        settingTimer();
 
+        settingTimer();
         begin_target();
+
+
 
     }
 
@@ -54,6 +64,7 @@ public class play_activity extends AppCompatActivity
 
             if(seconds<=0)
             {
+                endGame();
                 handler.removeCallbacks(this);
             }
         }
@@ -67,6 +78,33 @@ public class play_activity extends AppCompatActivity
         //設定Delay的時間
         handler.postDelayed(updateTimer, 1000);
 
+    }
+
+    public void endGame ()
+    {
+
+
+        try
+        {
+            Thread.sleep(1000);
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+
+        Intent it = new Intent(this ,EndOfGame.class);
+        Bundle bundle =new Bundle();
+        bundle.putInt("point",point);
+        it.putExtras(bundle);
+        startActivityForResult(it,123);
+
+        onDestory();
+    }
+
+    public void onDestory()
+    {
+        finish();
     }
 
 
