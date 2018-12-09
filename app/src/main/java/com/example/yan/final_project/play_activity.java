@@ -1,5 +1,6 @@
 package com.example.yan.final_project;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,8 +14,10 @@ public class play_activity extends AppCompatActivity
     int target[][]=new int[5][3];
     ImageView hit0,hit1,hit2;
     Button shot0,shot1,shot2;
-    TextView test;
 
+    private int point;
+    private Long startTime;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -22,7 +25,6 @@ public class play_activity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_activity);
 
-//        test=(TextView)findViewById(R.id.textView);
 
         shot0=(Button)findViewById(R.id.shot0);
         shot1=(Button)findViewById(R.id.shot1);
@@ -32,8 +34,38 @@ public class play_activity extends AppCompatActivity
         shot1.setOnClickListener(this);
         shot2.setOnClickListener(this);
 
+        settingTimer();
 
         begin_target();
+
+    }
+
+    private Runnable updateTimer = new Runnable()
+    {
+        public void run()
+        {
+            final TextView time = (TextView) findViewById(R.id.timer);
+            Long spentTime = System.currentTimeMillis() - startTime;
+
+
+            Long seconds = 30-(spentTime/1000) % 60;                //計算目前已過秒數
+            time.setText(""+seconds);
+            handler.postDelayed(this, 1000);
+
+            if(seconds<=0)
+            {
+                handler.removeCallbacks(this);
+            }
+        }
+    };
+
+    public void settingTimer()
+    {
+        startTime = System.currentTimeMillis();
+        //設定定時要執行的方法
+        handler.removeCallbacks(updateTimer);
+        //設定Delay的時間
+        handler.postDelayed(updateTimer, 1000);
 
     }
 
@@ -47,10 +79,9 @@ public class play_activity extends AppCompatActivity
 
 
 
-
-
     public void begin_target ()
     {
+        point=0;
         for (int i=0;i<3;i++)
         {
             for (int j= 0;j<5;j++)
@@ -76,6 +107,7 @@ public class play_activity extends AppCompatActivity
             target[0][0]=0;
             make_new_target();
             setting_print_target();
+            point=point+1;
         }
 
         if (v.getId()==R.id.shot1 && target[0][1]==1)
@@ -84,6 +116,7 @@ public class play_activity extends AppCompatActivity
             target[0][1]=0;
             make_new_target();
             setting_print_target();
+            point=point+1;
         }
 
         if (v.getId()==R.id.shot2 && target[0][2]==1)
@@ -92,6 +125,7 @@ public class play_activity extends AppCompatActivity
             target[0][2]=0;
             make_new_target();
             setting_print_target();
+            point=point+1;
         }
     }
 
