@@ -10,6 +10,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity
 {
     Button play;
+    TextView showpoint;
+    int point;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -18,9 +20,11 @@ public class MainActivity extends AppCompatActivity
 
         play=(Button)findViewById(R.id.play);
     }
+
     public void play(View v)
     {
         Intent it = new Intent(this ,play_activity.class);
         startActivityForResult(it,123);
     }
+
 }

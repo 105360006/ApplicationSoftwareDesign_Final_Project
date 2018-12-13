@@ -3,6 +3,7 @@ package com.example.yan.final_project;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.os.Trace;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -16,16 +17,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class play_activity extends AppCompatActivity
     implements View.OnClickListener
 {
     int target[][]=new int[5][3];
-    ImageView hit0,hit1,hit2;
+    ImageView target0,target1,target2;
     Button shot0,shot1,shot2;
+    int delaySecond=0;
 
+    int a=0;
     private int point;
     private Long startTime;
     private Handler handler = new Handler();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -42,13 +49,30 @@ public class play_activity extends AppCompatActivity
         shot1.setOnClickListener(this);
         shot2.setOnClickListener(this);
 
+        target0 =(ImageView)findViewById(R.id.target0);
+        target1 =(ImageView)findViewById(R.id.target1);
+        target2 =(ImageView)findViewById(R.id.target2);
 
         settingTimer();
         begin_target();
 
+    }
+
+
+    public void onDestory()
+    {
+        finish();
+    }
+
+
+    @Override
+    public void onClick(View v)
+    {
+        determine_shot_target(v);
 
 
     }
+
 
     private Runnable updateTimer = new Runnable()
     {
@@ -64,57 +88,62 @@ public class play_activity extends AppCompatActivity
 
             if(seconds<=0)
             {
+                time.setText("0");
+                if (a==0)
+                {
+                    delaySecond=1;
+                }
                 endGame();
-                handler.removeCallbacks(this);
+                a++;
             }
         }
     };
+    private Runnable delay = new Runnable()
+    {
+        public void run()
+        {
+            delaySecond=0;
+        }
+    };
+
 
     public void settingTimer()
     {
         startTime = System.currentTimeMillis();
         //設定定時要執行的方法
         handler.removeCallbacks(updateTimer);
-        //設定Delay的時間
+        //        //設定Delay的時間
         handler.postDelayed(updateTimer, 1000);
 
     }
 
     public void endGame ()
     {
+        handler.postDelayed(delay, 3000);
+
+//        AlertDialog.Builder bdr= new AlertDialog.Builder(this);
+//        bdr.setMessage("遊戲結束");
+//        bdr.setTitle("時間到");
+//        bdr.setCancelable(false);
+//        bdr.show();
+
+        Toast.makeText(this,"遊戲結束",Toast.LENGTH_LONG).show();
 
 
-        try
+        if (delaySecond==0)
         {
-            Thread.sleep(1000);
+            Intent it = new Intent(this ,EndOfGame.class);
+            Bundle bundle =new Bundle();
+            bundle.putInt("point",point);
+            it.putExtras(bundle);
+            startActivityForResult(it,123);
+            onDestory();
         }
-        catch (InterruptedException e)
-        {
-            e.printStackTrace();
-        }
-
-        Intent it = new Intent(this ,EndOfGame.class);
-        Bundle bundle =new Bundle();
-        bundle.putInt("point",point);
-        it.putExtras(bundle);
-        startActivityForResult(it,123);
-
-        onDestory();
-    }
-
-    public void onDestory()
-    {
-        finish();
-    }
 
 
-    @Override
-    public void onClick(View v)
-    {
-        determine_shot_target(v);
+
 
     }
-
 
 
     public void begin_target ()
@@ -139,32 +168,73 @@ public class play_activity extends AppCompatActivity
 
     public void determine_shot_target (View v)
         {
-        if (v.getId()==R.id.shot0 && target[0][0]==1)
-        {
-            findViewById(R.id.target0).setVisibility(View.INVISIBLE);
-            target[0][0]=0;
-            make_new_target();
-            setting_print_target();
-            point=point+1;
-        }
+            if (delaySecond==0)
+            {
+                if (v.getId()==R.id.shot0 && target[0][0]==1)
+                {
+                    findViewById(R.id.target0).setVisibility(View.INVISIBLE);
+                    target[0][0]=0;
+                    make_new_target();
+                    setting_print_target();
+                    point=point+1;
+                }
+                else if (v.getId()==R.id.shot1 && target[0][1]==1)
+                {
+                    findViewById(R.id.target1).setVisibility(View.INVISIBLE);
+                    target[0][1]=0;
+                    make_new_target();
+                    setting_print_target();
+                    point=point+1;
+                }
+                else if (v.getId()==R.id.shot2 && target[0][2]==1)
+                {
+                    findViewById(R.id.target2).setVisibility(View.INVISIBLE);
+                    target[0][2]=0;
+                    make_new_target();
+                    setting_print_target();
+                    point=point+1;
+                }
+                else if (v.getId()==R.id.shot0)
+                {
+                    if(target[0][1]==1)
+                    {
+                        target1.layout(target1.getLeft(), target1.getTop()-50, target1.getRight(), target1.getBottom()-50);
+                    }
+                    else if(target[0][2]==1)
+                    {
+                        target2.layout(target2.getLeft(), target2.getTop()-50, target2.getRight(), target2.getBottom()-50);
+                    }
+                    delaySecond=1;
+                    handler.postDelayed(delay, 500);
+                }
+                else if (v.getId()==R.id.shot1)
+                {
+                    if(target[0][0]==1)
+                    {
+                        target0.layout(target0.getLeft(), target0.getTop()-50, target0.getRight(), target0.getBottom()-50);
+                    }
+                    else if(target[0][2]==1)
+                    {
+                        target2.layout(target2.getLeft(), target2.getTop()-50, target2.getRight(), target2.getBottom()-50);
+                    }
+                    delaySecond=1;
+                    handler.postDelayed(delay, 500);
+                }
+                else if (v.getId()==R.id.shot2)
+                {
+                    if(target[0][0]==1)
+                    {
+                        target0.layout(target0.getLeft(), target0.getTop()-50, target0.getRight(), target0.getBottom()-50);
+                    }
+                    else if(target[0][1]==1)
+                    {
+                        target1.layout(target1.getLeft(), target1.getTop()-50, target1.getRight(), target1.getBottom()-50);
+                    }
+                    delaySecond=1;
+                    handler.postDelayed(delay, 500);
+                }
+            }
 
-        if (v.getId()==R.id.shot1 && target[0][1]==1)
-        {
-            findViewById(R.id.target1).setVisibility(View.INVISIBLE);
-            target[0][1]=0;
-            make_new_target();
-            setting_print_target();
-            point=point+1;
-        }
-
-        if (v.getId()==R.id.shot2 && target[0][2]==1)
-        {
-            findViewById(R.id.target2).setVisibility(View.INVISIBLE);
-            target[0][2]=0;
-            make_new_target();
-            setting_print_target();
-            point=point+1;
-        }
     }
 
     public void make_new_target()
