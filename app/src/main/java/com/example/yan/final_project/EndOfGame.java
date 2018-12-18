@@ -36,8 +36,8 @@ public class EndOfGame extends AppCompatActivity
         point=point*point;
         showpoint.setText(""+point);
 
-        pointRecord(point);
-        reader();
+//        pointRecord(point);
+//        reader();
 
     }
 
