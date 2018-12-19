@@ -1,6 +1,7 @@
 package com.example.yan.final_project;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ public class MainActivity extends AppCompatActivity
     Button play;
     TextView showpoint;
     int point;
+    MediaPlayer mp=new MediaPlayer();
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -19,10 +21,15 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         play=(Button)findViewById(R.id.play);
+
+        mp=MediaPlayer.create(this,R.raw.smoke);
+        mp.start();
+
     }
 
     public void play(View v)
     {
+        mp.start();
         Intent it = new Intent(this ,play_activity.class);
         startActivityForResult(it,123);
     }

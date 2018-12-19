@@ -106,7 +106,7 @@ public class play_activity extends AppCompatActivity
             time.setText(""+seconds);
             handler.postDelayed(this, 1000);
 
-            if(seconds<=0)
+            if(seconds<=28)
             {
                 time.setText("0");
                 if (a==0)
