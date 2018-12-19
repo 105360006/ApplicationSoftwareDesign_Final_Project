@@ -30,7 +30,7 @@ public class play_activity extends AppCompatActivity
     int delaySecond=0;
     int origin_top,origin_botton;
 
-    int a=0;
+    int a=0,b=0,c=0;
     private int point;
     private Long startTime;
     private Handler handler = new Handler();
@@ -69,7 +69,7 @@ public class play_activity extends AppCompatActivity
     {
         super.onDestroy();
 
-        
+
 
     }
 
@@ -80,16 +80,12 @@ public class play_activity extends AppCompatActivity
 
     }
 
-//    public void onDestroy()
-//    {
-//        super.onDestroy();
-//        finish();
-//    }
 
 
     @Override
     public void onClick(View v)
     {
+
         determine_shot_target(v);
 
 
@@ -151,20 +147,26 @@ public class play_activity extends AppCompatActivity
         handler.postDelayed(delay, 3000);
 
 
+        if (b==0)
+        {
+            Toast.makeText(this,"遊戲結束",Toast.LENGTH_SHORT).show();
 
-        Toast.makeText(this,"遊戲結束",Toast.LENGTH_LONG).show();
+            b++;
+        }
 
 
-        if (delaySecond==0)
+
+
+
+        if (delaySecond==0&&c==0)
         {
             Intent it = new Intent(this ,EndOfGame.class);
             Bundle bundle =new Bundle();
             bundle.putInt("point",point);
             it.putExtras(bundle);
             startActivityForResult(it,123);
-//            onDestroy();
             finish();
-
+            c++;
         }
 
 
