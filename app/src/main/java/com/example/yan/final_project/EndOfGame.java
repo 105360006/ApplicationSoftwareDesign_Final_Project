@@ -1,23 +1,23 @@
 package com.example.yan.final_project;
 
-        import android.content.Intent;
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.view.View;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import java.io.BufferedInputStream;
-        import java.io.BufferedOutputStream;
-        import java.io.File;
-        import java.io.FileInputStream;
-        import java.io.IOException;
-        import java.io.BufferedWriter;
-        import java.io.FileWriter;
-        import java.io.FileOutputStream;
-        import java.lang.reflect.Array;
-        import java.util.Arrays;
-        import java.util.Comparator;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.FileOutputStream;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class EndOfGame extends AppCompatActivity
 {
@@ -40,7 +40,6 @@ public class EndOfGame extends AppCompatActivity
         pointTemp=bundle.getInt("point");
 
         showpoint.setText(""+pointTemp*pointTemp);
-
 
         zeroRecord();
         reader();
@@ -66,7 +65,7 @@ public class EndOfGame extends AppCompatActivity
         Arrays.sort(point);
     }
 
-      public void playagain(View v)
+    public void playagain(View v)
     {
 
         Intent it = new Intent(this ,play_activity.class);
@@ -128,7 +127,7 @@ public class EndOfGame extends AppCompatActivity
         }
         catch (Exception e)
         {
-        e.printStackTrace();
+            e.printStackTrace();
         }
     }
 

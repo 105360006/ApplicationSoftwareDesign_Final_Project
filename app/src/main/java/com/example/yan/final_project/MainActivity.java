@@ -39,15 +39,10 @@ public class MainActivity extends AppCompatActivity
         Intent it = new Intent(this ,play_activity.class);
         startActivityForResult(it,123);
     }
-
-
     public void rank(View v)
     {
 
         Intent it = new Intent(this ,rank.class);
         startActivityForResult(it,456);
     }
-
-
-
 }

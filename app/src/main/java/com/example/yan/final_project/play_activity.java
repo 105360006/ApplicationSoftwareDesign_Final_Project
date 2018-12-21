@@ -35,9 +35,6 @@ public class play_activity extends AppCompatActivity
     private Long startTime;
     private Handler handler = new Handler();
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -57,41 +54,25 @@ public class play_activity extends AppCompatActivity
         target1 =(ImageView)findViewById(R.id.target1);
         target2 =(ImageView)findViewById(R.id.target2);
 
-
-
-
         settingTimer();
         begin_target();
-
     }
     @Override
     protected void onDestroy()
     {
         super.onDestroy();
-
-
-
     }
 
     @Override
     protected void onPause()
     {
         super.onPause();
-
     }
-
-
-
     @Override
     public void onClick(View v)
     {
-
         determine_shot_target(v);
-
-
-
     }
-
     private Runnable updateTimer = new Runnable()
     {
         public void run()
@@ -137,21 +118,16 @@ public class play_activity extends AppCompatActivity
         handler.removeCallbacks(updateTimer);
         //        //設定Delay的時間
         handler.postDelayed(updateTimer, 1000);
-
     }
-
     public void endGame ()
     {
         handler.postDelayed(delay, 3000);
-
-
         if (b==0)
         {
             Toast.makeText(this,"遊戲結束",Toast.LENGTH_SHORT).show();
 
             b++;
         }
-
 
         if (delaySecond==0&&c==0)
         {
@@ -163,11 +139,7 @@ public class play_activity extends AppCompatActivity
             finish();
             c++;
         }
-
-
     }
-
-
     public void begin_target ()
     {
         point=0;
@@ -186,11 +158,8 @@ public class play_activity extends AppCompatActivity
         }
         setting_print_target();
     }
-
-
     public void determine_shot_target (View v)
         {
-
             if (delaySecond==0)
             {
                 origin_top=target1.getTop();
@@ -261,9 +230,7 @@ public class play_activity extends AppCompatActivity
                     handler.postDelayed(delay, 500);
                 }
             }
-
     }
-
     public void make_new_target()
     {
         if (target[0][0]==0 && target[0][1]==0 && target[0][2]==0)
@@ -273,7 +240,6 @@ public class play_activity extends AppCompatActivity
             target[4][random]=1;
         }
     }
-
     public void setting_print_target()
     {
         if (target[0][0]==1)
@@ -301,8 +267,6 @@ public class play_activity extends AppCompatActivity
             findViewById(R.id.target2).setVisibility(View.INVISIBLE);
         }
 
-
-
         if (target[1][0]==1)
         {
             findViewById(R.id.target10).setVisibility(View.VISIBLE);
@@ -327,8 +291,6 @@ public class play_activity extends AppCompatActivity
         {
             findViewById(R.id.target12).setVisibility(View.INVISIBLE);
         }
-
-
 
         if (target[2][0]==1)
         {
@@ -355,8 +317,6 @@ public class play_activity extends AppCompatActivity
             findViewById(R.id.target22).setVisibility(View.INVISIBLE);
         }
 
-
-
         if (target[3][0]==1)
         {
             findViewById(R.id.target30).setVisibility(View.VISIBLE);
@@ -382,8 +342,6 @@ public class play_activity extends AppCompatActivity
             findViewById(R.id.target32).setVisibility(View.INVISIBLE);
         }
 
-
-
         if (target[4][0]==1)
         {
             findViewById(R.id.target40).setVisibility(View.VISIBLE);
@@ -408,10 +366,7 @@ public class play_activity extends AppCompatActivity
         {
             findViewById(R.id.target42).setVisibility(View.INVISIBLE);
         }
-
-
     }
-
     public void down_array_target()
     {
         for (int i=0;i<4;i++)

@@ -107,8 +107,7 @@ public class rank extends AppCompatActivity
             this.data =data;
             this.view = view;
         }
-
-
+        
         @Override
         public int getCount()
         {
