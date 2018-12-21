@@ -22,16 +22,26 @@ public class MainActivity extends AppCompatActivity
 
         play=(Button)findViewById(R.id.play);
 
-        mp=MediaPlayer.create(this,R.raw.smoke);
-        mp.start();
+//        mp=MediaPlayer.create(this,R.raw.smoke);
+//        mp.start();
 
     }
 
     public void play(View v)
     {
-        mp.start();
+
         Intent it = new Intent(this ,play_activity.class);
         startActivityForResult(it,123);
     }
+
+
+    public void rank(View v)
+    {
+
+        Intent it = new Intent(this ,rank.class);
+        startActivityForResult(it,456);
+    }
+
+
 
 }

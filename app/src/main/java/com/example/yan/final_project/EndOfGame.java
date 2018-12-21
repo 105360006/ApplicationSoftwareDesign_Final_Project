@@ -15,14 +15,17 @@ package com.example.yan.final_project;
         import java.io.BufferedWriter;
         import java.io.FileWriter;
         import java.io.FileOutputStream;
+        import java.lang.reflect.Array;
+        import java.util.Arrays;
+        import java.util.Comparator;
 
 public class EndOfGame extends AppCompatActivity
 {
     int point[]=new int[11];
-    int point2[]=new int[11];
     int pointTemp;
     TextView showpoint;
     TextView txtRead;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -36,38 +39,47 @@ public class EndOfGame extends AppCompatActivity
         Bundle bundle=it.getExtras();
         pointTemp=bundle.getInt("point");
 
-        pointTemp=pointTemp*pointTemp;
-        showpoint.setText(""+pointTemp);
+        showpoint.setText(""+pointTemp*pointTemp);
 
-        for(int i=0;i<=10;i++)
-        {
-            point[i]=i*25;
-        }
+
+        zeroRecord();
+        reader();
+        sortRecord();
 
         pointRecord(point);
-        reader();
-
     }
+
 
     public void goback(View v)
     {
+//        for(int i=10;i>=0;i--)
+//        {
+//            txtRead.append(" "+point[i]+"\n");
+//        }
 
-        for(int i=0;i<=10;i++)
-        {
-            txtRead.append(" "+point2[i]+"\n");
-        }
+        finish();
+    }
+    public void sortRecord()
+    {
+        point[0]=pointTemp;
 
-
-//        txtRead.setText(point2[0]+"\n"+point2[1]+"\n"+point2[2]+"\n"+point2[3]+"\n"+point2[4]+"\n");
-//        finish();
+        Arrays.sort(point);
     }
 
-
-    public void playagain(View v)
+      public void playagain(View v)
     {
 
-//        Intent it = new Intent(this ,play_activity.class);
-//        startActivityForResult(it,123);
+        Intent it = new Intent(this ,play_activity.class);
+        startActivityForResult(it,123);
+        finish();
+    }
+
+    public void zeroRecord()
+    {
+        for(int i=0;i<=10;i++)
+        {
+            point[i]=0;
+        }
     }
 
     public void pointRecord(int p[])
@@ -79,54 +91,38 @@ public class EndOfGame extends AppCompatActivity
             fos = openFileOutput("pointRecord.txt", MODE_PRIVATE);
             buffered =new BufferedOutputStream(fos);
 
-            byte[] buffbyte = new byte[200];
+//            byte[] buffbyte = new byte[200];
             for(int i=0;i<=10;i++)
             {
-
-
                 buffered.write(p[i]);
-
             }
 
             buffered.close();
-//            fos.close();
-
             File file = new File(getFilesDir() + "/" + fos);
-//            Toast.makeText(getApplicationContext(), file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
     }
+
     private void reader()
     {
         FileInputStream fos = null;
         BufferedInputStream buffered = null;
-        txtRead.setText("");
+
         try
         {
             fos = openFileInput("pointRecord.txt");
             buffered = new BufferedInputStream(fos);
-            byte[] buffbyte = new byte[200];
-            txtRead.setText("");
-//            do {
-//                int flag = buffered.read(buffbyte);
-//                if (flag == -1) {
-//                    break;
-//                } else {
-////                    txtRead.append(new String(buffbyte), 0, flag);
-//                    for(int i=0;i<=10;i++)
-//                    {
-//                        point2[i]=fos.read();
-//                    }
-//
-//                }
-//            }while (true);
+//            byte[] buffbyte = new byte[200];
+
+
 
             for(int i=0;i<=10;i++)
             {
-                point2[i]=buffered.read();
+                point[i]=buffered.read();
             }
 
             buffered.close();
@@ -137,4 +133,5 @@ public class EndOfGame extends AppCompatActivity
         e.printStackTrace();
         }
     }
+
 }

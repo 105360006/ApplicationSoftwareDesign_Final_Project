@@ -92,8 +92,6 @@ public class play_activity extends AppCompatActivity
 
     }
 
-
-
     private Runnable updateTimer = new Runnable()
     {
         public void run()
@@ -106,7 +104,7 @@ public class play_activity extends AppCompatActivity
             time.setText(""+seconds);
             handler.postDelayed(this, 1000);
 
-            if(seconds<=28)
+            if(seconds<=0)
             {
                 time.setText("0");
                 if (a==0)
@@ -153,9 +151,6 @@ public class play_activity extends AppCompatActivity
 
             b++;
         }
-
-
-
 
 
         if (delaySecond==0&&c==0)
