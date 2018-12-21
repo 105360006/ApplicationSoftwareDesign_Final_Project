@@ -1,6 +1,7 @@
 package com.example.yan.final_project;
 
         import android.content.Intent;
+        import android.media.MediaPlayer;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.view.View;
@@ -17,6 +18,7 @@ package com.example.yan.final_project;
 
 public class EndOfGame extends AppCompatActivity
 {
+
     int point;
     TextView showpoint;
     TextView txtRead;
@@ -36,20 +38,24 @@ public class EndOfGame extends AppCompatActivity
         point=point*point;
         showpoint.setText(""+point);
 
-//        pointRecord(point);
-//        reader();
+        pointRecord(point);
+        reader();
+
 
     }
 
     public void goback(View v)
     {
 
+
         finish();
+
     }
 
 
     public void playagain(View v)
     {
+
         Intent it = new Intent(this ,play_activity.class);
         startActivityForResult(it,123);
     }

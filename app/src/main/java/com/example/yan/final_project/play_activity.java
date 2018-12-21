@@ -1,8 +1,8 @@
 package com.example.yan.final_project;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.os.Trace;
@@ -28,13 +28,11 @@ public class play_activity extends AppCompatActivity
     ImageView target0,target1,target2;
     Button shot0,shot1,shot2;
     int delaySecond=0;
-    int origin_top,origin_botton;
 
-    int a=0,b=0,c=0;
+    int a=0;
     private int point;
     private Long startTime;
     private Handler handler = new Handler();
-
 
 
 
@@ -43,7 +41,6 @@ public class play_activity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_activity);
-
 
         shot0=(Button)findViewById(R.id.shot0);
         shot1=(Button)findViewById(R.id.shot1);
@@ -57,41 +54,25 @@ public class play_activity extends AppCompatActivity
         target1 =(ImageView)findViewById(R.id.target1);
         target2 =(ImageView)findViewById(R.id.target2);
 
-
-
-
         settingTimer();
         begin_target();
 
     }
-    @Override
-    protected void onDestroy()
+
+
+    public void onDestory()
     {
-        super.onDestroy();
-
-
-
+        finish();
     }
-
-    @Override
-    protected void onPause()
-    {
-        super.onPause();
-
-    }
-
 
 
     @Override
     public void onClick(View v)
     {
-
         determine_shot_target(v);
 
 
-
     }
-
 
 
     private Runnable updateTimer = new Runnable()
@@ -122,13 +103,8 @@ public class play_activity extends AppCompatActivity
     {
         public void run()
         {
-            target0.layout(target0.getLeft(), origin_top, target0.getRight(), origin_botton);
-            target1.layout(target1.getLeft(), origin_top, target1.getRight(), origin_botton);
-            target2.layout(target2.getLeft(), origin_top, target2.getRight(), origin_botton);
-
             delaySecond=0;
         }
-
     };
 
 
@@ -146,28 +122,26 @@ public class play_activity extends AppCompatActivity
     {
         handler.postDelayed(delay, 3000);
 
+//        AlertDialog.Builder bdr= new AlertDialog.Builder(this);
+//        bdr.setMessage("遊戲結束");
+//        bdr.setTitle("時間到");
+//        bdr.setCancelable(false);
+//        bdr.show();
 
-        if (b==0)
-        {
-            Toast.makeText(this,"遊戲結束",Toast.LENGTH_SHORT).show();
-
-            b++;
-        }
-
-
+        Toast.makeText(this,"遊戲結束",Toast.LENGTH_LONG).show();
 
 
-
-        if (delaySecond==0&&c==0)
+        if (delaySecond==0)
         {
             Intent it = new Intent(this ,EndOfGame.class);
             Bundle bundle =new Bundle();
             bundle.putInt("point",point);
             it.putExtras(bundle);
             startActivityForResult(it,123);
-            finish();
-            c++;
+            onDestory();
         }
+
+
 
 
     }
@@ -195,13 +169,8 @@ public class play_activity extends AppCompatActivity
 
     public void determine_shot_target (View v)
         {
-
             if (delaySecond==0)
             {
-                origin_top=target1.getTop();
-                origin_botton=target1.getBottom();
-
-
                 if (v.getId()==R.id.shot0 && target[0][0]==1)
                 {
                     findViewById(R.id.target0).setVisibility(View.INVISIBLE);
