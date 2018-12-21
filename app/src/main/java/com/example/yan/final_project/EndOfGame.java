@@ -118,8 +118,6 @@ public class EndOfGame extends AppCompatActivity
             buffered = new BufferedInputStream(fos);
 //            byte[] buffbyte = new byte[200];
 
-
-
             for(int i=0;i<=10;i++)
             {
                 point[i]=buffered.read();

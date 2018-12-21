@@ -225,11 +225,11 @@ public class play_activity extends AppCompatActivity
                 {
                     if(target[0][1]==1)
                     {
-                        target1.layout(target1.getLeft(), target1.getTop()-50, target1.getRight(), target1.getBottom()-50);
+                        target1.layout(target1.getLeft(), target1.getTop()-80, target1.getRight(), target1.getBottom()-80);
                     }
                     else if(target[0][2]==1)
                     {
-                        target2.layout(target2.getLeft(), target2.getTop()-50, target2.getRight(), target2.getBottom()-50);
+                        target2.layout(target2.getLeft(), target2.getTop()-80, target2.getRight(), target2.getBottom()-80);
                     }
                     delaySecond=1;
                     handler.postDelayed(delay, 500);
@@ -238,11 +238,11 @@ public class play_activity extends AppCompatActivity
                 {
                     if(target[0][0]==1)
                     {
-                        target0.layout(target0.getLeft(), target0.getTop()-50, target0.getRight(), target0.getBottom()-50);
+                        target0.layout(target0.getLeft(), target0.getTop()-80, target0.getRight(), target0.getBottom()-50);
                     }
                     else if(target[0][2]==1)
                     {
-                        target2.layout(target2.getLeft(), target2.getTop()-50, target2.getRight(), target2.getBottom()-50);
+                        target2.layout(target2.getLeft(), target2.getTop()-80, target2.getRight(), target2.getBottom()-80);
                     }
                     delaySecond=1;
                     handler.postDelayed(delay, 500);
@@ -251,11 +251,11 @@ public class play_activity extends AppCompatActivity
                 {
                     if(target[0][0]==1)
                     {
-                        target0.layout(target0.getLeft(), target0.getTop()-50, target0.getRight(), target0.getBottom()-50);
+                        target0.layout(target0.getLeft(), target0.getTop()-80, target0.getRight(), target0.getBottom()-80);
                     }
                     else if(target[0][1]==1)
                     {
-                        target1.layout(target1.getLeft(), target1.getTop()-50, target1.getRight(), target1.getBottom()-50);
+                        target1.layout(target1.getLeft(), target1.getTop()-80, target1.getRight(), target1.getBottom()-80);
                     }
                     delaySecond=1;
                     handler.postDelayed(delay, 500);

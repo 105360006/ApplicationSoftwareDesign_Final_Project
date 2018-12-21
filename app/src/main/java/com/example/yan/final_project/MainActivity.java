@@ -26,6 +26,12 @@ public class MainActivity extends AppCompatActivity
 //        mp.start();
 
     }
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+
+    }
 
     public void play(View v)
     {
