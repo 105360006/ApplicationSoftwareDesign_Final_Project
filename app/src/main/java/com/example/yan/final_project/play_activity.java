@@ -1,8 +1,8 @@
 package com.example.yan.final_project;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.os.Trace;
@@ -28,19 +28,19 @@ public class play_activity extends AppCompatActivity
     ImageView target0,target1,target2;
     Button shot0,shot1,shot2;
     int delaySecond=0;
+    int origin_top,origin_botton;
 
-    int a=0;
+    int a=0,b=0,c=0;
     private int point;
     private Long startTime;
     private Handler handler = new Handler();
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_activity);
+
 
         shot0=(Button)findViewById(R.id.shot0);
         shot1=(Button)findViewById(R.id.shot1);
@@ -56,25 +56,23 @@ public class play_activity extends AppCompatActivity
 
         settingTimer();
         begin_target();
-
     }
-
-
-    public void onDestory()
+    @Override
+    protected void onDestroy()
     {
-        finish();
+        super.onDestroy();
     }
 
-
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+    }
     @Override
     public void onClick(View v)
     {
         determine_shot_target(v);
-
-
     }
-
-
     private Runnable updateTimer = new Runnable()
     {
         public void run()
@@ -103,8 +101,13 @@ public class play_activity extends AppCompatActivity
     {
         public void run()
         {
+            target0.layout(target0.getLeft(), origin_top, target0.getRight(), origin_botton);
+            target1.layout(target1.getLeft(), origin_top, target1.getRight(), origin_botton);
+            target2.layout(target2.getLeft(), origin_top, target2.getRight(), origin_botton);
+
             delaySecond=0;
         }
+
     };
 
 
@@ -115,38 +118,28 @@ public class play_activity extends AppCompatActivity
         handler.removeCallbacks(updateTimer);
         //        //設定Delay的時間
         handler.postDelayed(updateTimer, 1000);
-
     }
-
     public void endGame ()
     {
         handler.postDelayed(delay, 3000);
+        if (b==0)
+        {
+            Toast.makeText(this,"遊戲結束",Toast.LENGTH_SHORT).show();
 
-//        AlertDialog.Builder bdr= new AlertDialog.Builder(this);
-//        bdr.setMessage("遊戲結束");
-//        bdr.setTitle("時間到");
-//        bdr.setCancelable(false);
-//        bdr.show();
+            b++;
+        }
 
-        Toast.makeText(this,"遊戲結束",Toast.LENGTH_LONG).show();
-
-
-        if (delaySecond==0)
+        if (delaySecond==0&&c==0)
         {
             Intent it = new Intent(this ,EndOfGame.class);
             Bundle bundle =new Bundle();
             bundle.putInt("point",point);
             it.putExtras(bundle);
             startActivityForResult(it,123);
-            onDestory();
+            finish();
+            c++;
         }
-
-
-
-
     }
-
-
     public void begin_target ()
     {
         point=0;
@@ -165,12 +158,14 @@ public class play_activity extends AppCompatActivity
         }
         setting_print_target();
     }
-
-
     public void determine_shot_target (View v)
         {
             if (delaySecond==0)
             {
+                origin_top=target1.getTop();
+                origin_botton=target1.getBottom();
+
+
                 if (v.getId()==R.id.shot0 && target[0][0]==1)
                 {
                     findViewById(R.id.target0).setVisibility(View.INVISIBLE);
@@ -199,11 +194,11 @@ public class play_activity extends AppCompatActivity
                 {
                     if(target[0][1]==1)
                     {
-                        target1.layout(target1.getLeft(), target1.getTop()-50, target1.getRight(), target1.getBottom()-50);
+                        target1.layout(target1.getLeft(), target1.getTop()-80, target1.getRight(), target1.getBottom()-80);
                     }
                     else if(target[0][2]==1)
                     {
-                        target2.layout(target2.getLeft(), target2.getTop()-50, target2.getRight(), target2.getBottom()-50);
+                        target2.layout(target2.getLeft(), target2.getTop()-80, target2.getRight(), target2.getBottom()-80);
                     }
                     delaySecond=1;
                     handler.postDelayed(delay, 500);
@@ -212,11 +207,11 @@ public class play_activity extends AppCompatActivity
                 {
                     if(target[0][0]==1)
                     {
-                        target0.layout(target0.getLeft(), target0.getTop()-50, target0.getRight(), target0.getBottom()-50);
+                        target0.layout(target0.getLeft(), target0.getTop()-80, target0.getRight(), target0.getBottom()-50);
                     }
                     else if(target[0][2]==1)
                     {
-                        target2.layout(target2.getLeft(), target2.getTop()-50, target2.getRight(), target2.getBottom()-50);
+                        target2.layout(target2.getLeft(), target2.getTop()-80, target2.getRight(), target2.getBottom()-80);
                     }
                     delaySecond=1;
                     handler.postDelayed(delay, 500);
@@ -225,19 +220,17 @@ public class play_activity extends AppCompatActivity
                 {
                     if(target[0][0]==1)
                     {
-                        target0.layout(target0.getLeft(), target0.getTop()-50, target0.getRight(), target0.getBottom()-50);
+                        target0.layout(target0.getLeft(), target0.getTop()-80, target0.getRight(), target0.getBottom()-80);
                     }
                     else if(target[0][1]==1)
                     {
-                        target1.layout(target1.getLeft(), target1.getTop()-50, target1.getRight(), target1.getBottom()-50);
+                        target1.layout(target1.getLeft(), target1.getTop()-80, target1.getRight(), target1.getBottom()-80);
                     }
                     delaySecond=1;
                     handler.postDelayed(delay, 500);
                 }
             }
-
     }
-
     public void make_new_target()
     {
         if (target[0][0]==0 && target[0][1]==0 && target[0][2]==0)
@@ -247,7 +240,6 @@ public class play_activity extends AppCompatActivity
             target[4][random]=1;
         }
     }
-
     public void setting_print_target()
     {
         if (target[0][0]==1)
@@ -275,8 +267,6 @@ public class play_activity extends AppCompatActivity
             findViewById(R.id.target2).setVisibility(View.INVISIBLE);
         }
 
-
-
         if (target[1][0]==1)
         {
             findViewById(R.id.target10).setVisibility(View.VISIBLE);
@@ -301,8 +291,6 @@ public class play_activity extends AppCompatActivity
         {
             findViewById(R.id.target12).setVisibility(View.INVISIBLE);
         }
-
-
 
         if (target[2][0]==1)
         {
@@ -329,8 +317,6 @@ public class play_activity extends AppCompatActivity
             findViewById(R.id.target22).setVisibility(View.INVISIBLE);
         }
 
-
-
         if (target[3][0]==1)
         {
             findViewById(R.id.target30).setVisibility(View.VISIBLE);
@@ -356,8 +342,6 @@ public class play_activity extends AppCompatActivity
             findViewById(R.id.target32).setVisibility(View.INVISIBLE);
         }
 
-
-
         if (target[4][0]==1)
         {
             findViewById(R.id.target40).setVisibility(View.VISIBLE);
@@ -382,10 +366,7 @@ public class play_activity extends AppCompatActivity
         {
             findViewById(R.id.target42).setVisibility(View.INVISIBLE);
         }
-
-
     }
-
     public void down_array_target()
     {
         for (int i=0;i<4;i++)

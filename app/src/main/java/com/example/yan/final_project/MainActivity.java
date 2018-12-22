@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity
 {
     Button play;
     TextView showpoint;
-    MediaPlayer mp;
     int point;
+    MediaPlayer mp=new MediaPlayer();
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -27,29 +27,45 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         play=(Button)findViewById(R.id.play);
+
+//        mp=MediaPlayer.create(this,R.raw.smoke);
+//        mp.start();
+
+    }
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+
     }
 
     public void play(View v)
     {
-        mp=MediaPlayer.create(this,R.raw.music);
-        mp.start();
+
         Intent it = new Intent(this ,play_activity.class);
         startActivityForResult(it,123);
-
     }
+    public void rank(View v)
+    {
+
+        Intent it = new Intent(this ,rank.class);
+        startActivityForResult(it,456);
+    }
+
     private int number6;
 
-
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.example_menu,menu);
         return true;
     }
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
             case R.id.userdata:
                 Toast.makeText(this, "users data selected", Toast.LENGTH_SHORT).show();
                 changeSettings();
@@ -64,16 +80,19 @@ public class MainActivity extends AppCompatActivity
         }
 
     }
-    private void changeSettings() {
+    private void changeSettings()
+    {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
         //new新的視窗
         final String[] settingList = {"105360006陳彥丞 ", "105360028鍾宇弼" , "105360033顏偉哲"};
         //在新視窗中建立字串陣列
         alertDialog.setTitle("使用者資料");
-        alertDialog.setItems(settingList, new DialogInterface.OnClickListener() {
+        alertDialog.setItems(settingList, new DialogInterface.OnClickListener()
+        {
             //將字串陣列匯入(監聽到被按下)
             @Override
-            public void onClick(DialogInterface dialog, final int which) {
+            public void onClick(DialogInterface dialog, final int which)
+            {
                 final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
 
                 switch(which){
