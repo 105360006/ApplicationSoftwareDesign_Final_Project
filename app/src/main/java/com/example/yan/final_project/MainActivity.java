@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity
     Button play;
     TextView showpoint;
     int point;
-    MediaPlayer mp=new MediaPlayer();
+    private MediaPlayer mp=new MediaPlayer();
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -22,8 +22,9 @@ public class MainActivity extends AppCompatActivity
 
         play=(Button)findViewById(R.id.play);
 
-//        mp=MediaPlayer.create(this,R.raw.smoke);
-//        mp.start();
+        final MediaPlayer mp=MediaPlayer.create(this,R.raw.smoke);
+        mp.setLooping(false);
+        mp.start();
 
     }
     @Override
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity
     }
     public void rank(View v)
     {
-
+        mp.start();
         Intent it = new Intent(this ,rank.class);
         startActivityForResult(it,456);
     }
