@@ -29,6 +29,9 @@ public class play_activity extends AppCompatActivity
     Button shot0,shot1,shot2;
     int delaySecond=0;
     int origin_top,origin_botton;
+    int countDown=3;;
+    int start=0;
+    Toast toast;
 
     int a=0,b=0,c=0;
     private int point;
@@ -54,7 +57,7 @@ public class play_activity extends AppCompatActivity
         target1 =(ImageView)findViewById(R.id.target1);
         target2 =(ImageView)findViewById(R.id.target2);
 
-        settingTimer();
+        handler.post(count123);
         begin_target();
     }
     @Override
@@ -79,7 +82,6 @@ public class play_activity extends AppCompatActivity
         {
             final TextView time = (TextView) findViewById(R.id.timer);
             Long spentTime = System.currentTimeMillis() - startTime;
-
 
             Long seconds = 30-(spentTime/1000) % 60;                //計算目前已過秒數
             time.setText(""+seconds);
@@ -109,7 +111,40 @@ public class play_activity extends AppCompatActivity
         }
 
     };
+    private Runnable count123 = new Runnable()
+    {
+        public void run()
+        {
+            countDown();
+            countDown--;
+            handler.postDelayed(this, 1000);
 
+            if (countDown<=-1)
+            {
+                handler.removeCallbacks(this);
+            }
+        }
+
+    };
+    public void countDown()
+    {
+
+        if (countDown==3)
+        {
+            toast = Toast.makeText(this, "準備", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER,0,0);
+            toast.show();
+        }
+        else if(countDown<=0)
+        {
+            toast = Toast.makeText(this, "開始", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER,0,0);
+            toast.show();
+            start=1;
+            settingTimer();
+        }
+
+    }
 
     public void settingTimer()
     {
@@ -124,7 +159,9 @@ public class play_activity extends AppCompatActivity
         handler.postDelayed(delay, 3000);
         if (b==0)
         {
-            Toast.makeText(this,"遊戲結束",Toast.LENGTH_SHORT).show();
+            toast = Toast.makeText(this, "遊戲結束", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER,0,0);
+            toast.show();
 
             b++;
         }
@@ -160,7 +197,7 @@ public class play_activity extends AppCompatActivity
     }
     public void determine_shot_target (View v)
         {
-            if (delaySecond==0)
+            if (delaySecond==0 && start==1)
             {
                 origin_top=target1.getTop();
                 origin_botton=target1.getBottom();

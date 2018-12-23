@@ -25,6 +25,7 @@ public class EndOfGame extends AppCompatActivity
     int pointTemp;
     TextView showpoint;
     TextView txtRead;
+    TextView rank;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,6 +35,7 @@ public class EndOfGame extends AppCompatActivity
 
         showpoint=(TextView)findViewById(R.id.showpoint);
         txtRead = (TextView) findViewById(R.id.textView2);
+        rank=(TextView)findViewById(R.id.rank);
 
         Intent it =getIntent();
         Bundle bundle=it.getExtras();
@@ -63,6 +65,16 @@ public class EndOfGame extends AppCompatActivity
         point[0]=pointTemp;
 
         Arrays.sort(point);
+        int a = Arrays.binarySearch(point,pointTemp);
+        if(a<=0)
+        {
+            rank.setText("你好爛喔");
+        }
+        else
+        {
+            rank.setText("你是第"+ (11-a) +"名");
+        }
+
     }
 
     public void playagain(View v)
