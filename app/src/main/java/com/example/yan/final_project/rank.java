@@ -56,7 +56,6 @@ public class rank extends AppCompatActivity
         mainBGM.setLooping(true);
         mainBGM.start();
 
-
     }
 
 
@@ -66,12 +65,10 @@ public class rank extends AppCompatActivity
         super.onDestroy();
         mainBGM.stop();
         mainBGM.release();
-
     }
 
     public void goback(View v)
     {
-
         finish();
     }
 
@@ -99,15 +96,12 @@ public class rank extends AppCompatActivity
         {
             fos = openFileInput("pointRecord.txt");
             buffered = new BufferedInputStream(fos);
-//            byte[] buffbyte = new byte[200];
 
             for(int i=0;i<=10;i++)
             {
                 point[i]=buffered.read();
             }
-
             buffered.close();
-
         }
         catch (Exception e)
         {
@@ -125,7 +119,6 @@ public class rank extends AppCompatActivity
             this.data =data;
             this.view = view;
         }
-        
         @Override
         public int getCount()
         {

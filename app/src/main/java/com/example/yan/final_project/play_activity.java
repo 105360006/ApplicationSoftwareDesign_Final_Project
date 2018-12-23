@@ -63,7 +63,7 @@ public class play_activity extends AppCompatActivity
         handler.post(count123);
         begin_target();
 
-        gameBGM=MediaPlayer.create(this,R.raw.main);
+        gameBGM=MediaPlayer.create(this,R.raw.game);
         gameBGM.setLooping(true);
         gameBGM.start();
     }

@@ -110,7 +110,6 @@ public class EndOfGame extends AppCompatActivity
             fos = openFileOutput("pointRecord.txt", MODE_PRIVATE);
             buffered =new BufferedOutputStream(fos);
 
-//            byte[] buffbyte = new byte[200];
             for(int i=0;i<=10;i++)
             {
                 buffered.write(p[i]);
@@ -135,7 +134,7 @@ public class EndOfGame extends AppCompatActivity
         {
             fos = openFileInput("pointRecord.txt");
             buffered = new BufferedInputStream(fos);
-//            byte[] buffbyte = new byte[200];
+
 
             for(int i=0;i<=10;i++)
             {
@@ -143,7 +142,6 @@ public class EndOfGame extends AppCompatActivity
             }
 
             buffered.close();
-
         }
         catch (Exception e)
         {

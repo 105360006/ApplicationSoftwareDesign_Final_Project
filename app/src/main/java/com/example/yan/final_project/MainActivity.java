@@ -170,17 +170,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onDestroy()
     {
         super.onDestroy();
-        mainBGM.stop();
-        mainBGM.release();
-        title.stop();
-        title.release();
-
+//        mainBGM.stop();
+//        mainBGM.release();
+//        title.stop();
+//        title.release();
     }
 
 
     public void rank(View v)
     {
-
         Intent it = new Intent(this ,rank.class);
         startActivityForResult(it,456);
     }
@@ -206,13 +204,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 return true;
 
             case R.id.exit:
+                mainBGM.stop();
                 finish();
-                return true;
-
 
             default:return super.onOptionsItemSelected(item);
         }
-
     }
     private void changeSettings()
     {
@@ -243,5 +239,4 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         });
         alertDialog.show();
     }
-
 }
