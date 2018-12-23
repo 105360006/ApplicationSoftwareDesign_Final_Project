@@ -1,6 +1,7 @@
 package com.example.yan.final_project;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +27,7 @@ public class EndOfGame extends AppCompatActivity
     TextView showpoint;
     TextView txtRead;
     TextView rank;
+    MediaPlayer mainBGM=new MediaPlayer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,7 +36,6 @@ public class EndOfGame extends AppCompatActivity
         setContentView(R.layout.activity_end_of_game);
 
         showpoint=(TextView)findViewById(R.id.showpoint);
-        txtRead = (TextView) findViewById(R.id.textView2);
         rank=(TextView)findViewById(R.id.rank);
 
         Intent it =getIntent();
@@ -48,16 +49,23 @@ public class EndOfGame extends AppCompatActivity
         sortRecord();
 
         pointRecord(point);
+
+        mainBGM=MediaPlayer.create(this,R.raw.main);
+        mainBGM.setLooping(true);
+        mainBGM.start();
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        mainBGM.stop();
+        mainBGM.release();
     }
 
 
     public void goback(View v)
     {
-//        for(int i=10;i>=0;i--)
-//        {
-//            txtRead.append(" "+point[i]+"\n");
-//        }
-
         finish();
     }
     public void sortRecord()

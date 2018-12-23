@@ -3,6 +3,7 @@ package com.example.yan.final_project;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.os.Trace;
@@ -32,6 +33,8 @@ public class play_activity extends AppCompatActivity
     int countDown=3;;
     int start=0;
     Toast toast;
+    MediaPlayer gameBGM=new MediaPlayer();
+
 
     int a=0,b=0,c=0;
     private int point;
@@ -59,11 +62,17 @@ public class play_activity extends AppCompatActivity
 
         handler.post(count123);
         begin_target();
+
+        gameBGM=MediaPlayer.create(this,R.raw.main);
+        gameBGM.setLooping(true);
+        gameBGM.start();
     }
     @Override
     protected void onDestroy()
     {
         super.onDestroy();
+        gameBGM.stop();
+        gameBGM.release();
     }
 
     @Override

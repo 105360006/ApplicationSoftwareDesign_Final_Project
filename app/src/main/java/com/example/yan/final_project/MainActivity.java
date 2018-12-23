@@ -32,14 +32,12 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity implements SensorEventListener
 {
     Button play;
-    TextView showpoint;
-    int point;
-    MediaPlayer mp=new MediaPlayer();
 
+    int point;
+    MediaPlayer mainBGM=new MediaPlayer();
+    MediaPlayer title=new MediaPlayer();
     int xchange;
     int before,after;
-
-
 
     SensorManager sm;
     Sensor sr;
@@ -55,25 +53,29 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         play=(Button)findViewById(R.id.play);
-        showpoint=(TextView)findViewById(R.id.showpoint) ;
-
-        mp=MediaPlayer.create(this,R.raw.smoke);
-        mp.start();
-
-
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        setContentView(R.layout.activity_main);
-        initView();
         sm = (SensorManager) getSystemService(SENSOR_SERVICE);
         sr = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-//        t1 = (ImageView) findViewById(R.id.imageView1);
         layout = (ConstraintLayout) findViewById(R.id.layout);
+
+        mainBGM=MediaPlayer.create(this,R.raw.main);
+        mainBGM.setLooping(true);
+        mainBGM.start();
+
+        title=MediaPlayer.create(this,R.raw.title);
+        mainBGM.setLooping(false);
+        title.start();
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        initView();
+
+
     }
-    private void initView(){
+    private void initView()
+    {
         lo= (LinearLayout) findViewById(R.id.lo);
         final Handler handler = new Handler(){
             @Override
@@ -126,12 +128,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         ConstraintLayout.LayoutParams parms = (ConstraintLayout.LayoutParams) lo.getLayoutParams();
         before=parms.leftMargin;
 
-        if(mx==0){
+        if(mx==0)
+        {
             mx = (layout.getWidth()-lo.getWidth())/20.0;
             my = (layout.getHeight()-lo.getHeight())/20.0;
         }
-
-
 
 
         parms.leftMargin = (int)((10-event.values[0]) * mx);
@@ -139,27 +140,40 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         lo.setLayoutParams(parms);
 
         after= parms.leftMargin;
-        showpoint.setText("before"+before+"   after"+after);
 
         xchange=after-before;
     }
-
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy)
     {
     }
     @Override
+    protected void onPause()
+    {
+        super.onPause();
+        mainBGM.stop();
+        mainBGM.release();
+    }
+    @Override
     protected void onResume()
     {
         super.onResume();
         sm.registerListener(this,sr,SensorManager.SENSOR_DELAY_GAME);
+        mainBGM=MediaPlayer.create(this,R.raw.main);
+        mainBGM.setLooping(true);
+        mainBGM.start();
+
     }
 
     @Override
     protected void onDestroy()
     {
         super.onDestroy();
+        mainBGM.stop();
+        mainBGM.release();
+        title.stop();
+        title.release();
 
     }
 
@@ -206,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //new新的視窗
         final String[] settingList = {"105360006陳彥丞 ", "105360028鍾宇弼" , "105360033顏偉哲"};
         //在新視窗中建立字串陣列
-        alertDialog.setTitle("使用者資料");
+        alertDialog.setTitle("作者資料");
         alertDialog.setItems(settingList, new DialogInterface.OnClickListener()
         {
             //將字串陣列匯入(監聽到被按下)

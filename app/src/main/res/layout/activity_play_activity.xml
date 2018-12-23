@@ -224,11 +224,15 @@
         android:id="@+id/timer"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@color/colorAccent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
         android:text="30"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary"
         android:textSize="40sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

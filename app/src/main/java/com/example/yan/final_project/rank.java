@@ -1,5 +1,7 @@
 package com.example.yan.final_project;
 
+import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +18,7 @@ import java.io.FileInputStream;
 public class rank extends AppCompatActivity
 {
     int point[]=new int[11];
+    MediaPlayer mainBGM=new MediaPlayer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -49,8 +52,23 @@ public class rank extends AppCompatActivity
         ListView listView =(ListView) findViewById(R.id.rank);
         listView.setAdapter(rankAdapter);
 
+        mainBGM=MediaPlayer.create(this,R.raw.main);
+        mainBGM.setLooping(true);
+        mainBGM.start();
+
 
     }
+
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        mainBGM.stop();
+        mainBGM.release();
+
+    }
+
     public void goback(View v)
     {
 
